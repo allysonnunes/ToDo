@@ -1,4 +1,4 @@
 export interface ToDo{
-  Id: number;
-  Nome:string;
+  Id?: number;
+  Nome?:string;
 }
