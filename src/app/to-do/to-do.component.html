@@ -14,14 +14,16 @@
     <thead>
       <tr>
         <th scope="col">ToDo</th>
+        <th scope="col">Status</th>
         <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of todos">
         <td id={{item.Id}}>{{item.Nome}}</td>
+        <td id={{item.Id}}>{{item.Status}}</td>
         <td class="float-right">
-          <button type="button" class="btn btn-primary" (click)="onEdit(item)" data-toggle="modal" data-target="#exampleModal">Editar</button>
+          <button *ngIf="item.Status!='Fechado'" type="button" class="btn btn-primary" (click)="onEdit(item)" data-toggle="modal" data-target="#exampleModal">Editar</button>
           <button type="button" class="btn btn-danger" (click)="onDelete(item)" data-toggle="modal" data-target="#exampleModalExcluir">Excluir</button>
         </td>
       </tr>
@@ -39,7 +41,18 @@
         </button>
       </div>
       <div class="modal-body">
-        <input type="text" class="form-control" placeholder="Nome" [(ngModel)]="todo.Nome"/>
+        <div class="form-group">
+          <label for="Nome">Nome</label>
+        <input  id="Nome" type="text" class="form-control" placeholder="Nome" [(ngModel)]="todo.Nome"/>
+      </div>
+        <div class="form-group">
+          <label for="sel1">Status</label>
+          <select class="form-control" id="sel1"  [(ngModel)]="todo.Status">
+            <option value="Novo">Novo</option>
+            <option value="Andamento">Andamento</option>
+            <option value="Fechado">Fechado</option>
+          </select>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>

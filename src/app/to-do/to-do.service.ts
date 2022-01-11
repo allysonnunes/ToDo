@@ -17,10 +17,13 @@ export class ToDoService {
   getToDos(): ToDo[]{
       return [{
         Id:1,
-        Nome :'Teste'
+        Nome :'Teste',
+        Status: 'Novo'
+
     },{
       Id:2,
-      Nome :'Teste 2'
+      Nome :'Teste 2',
+      Status: 'Novo'
   }];
 }
 

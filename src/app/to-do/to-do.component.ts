@@ -34,6 +34,12 @@ export class ToDoComponent implements OnInit {
     console.log(this.todo);
   }
   onEditConfirm(item:ToDo){
+    this.todos.forEach(element => {
+      if(element.Id == item.Id){
+        element.Nome = item.Nome;
+        element.Status = item.Status;
+      }
+    });
     console.log(item);
   }
 
