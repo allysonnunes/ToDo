@@ -7,8 +7,8 @@ import { ToDo } from './todo.model';
   styleUrls: ['./to-do.component.scss']
 })
 export class ToDoComponent implements OnInit {
-  todo: ToDo = {};
-  novoTodo: ToDo = {};
+  todo: ToDo = {Id:0};
+  novoTodo: ToDo = {Id:0};
   todos: ToDo[] = [];
   repos :any[] =[];
   constructor(private toDoService: ToDoService) { }
@@ -33,6 +33,7 @@ export class ToDoComponent implements OnInit {
     this.todo = Object.assign({}, item);
     console.log(this.todo);
   }
+
   onEditConfirm(item:ToDo){
     this.todos.forEach(element => {
       if(element.Id == item.Id){
@@ -44,14 +45,24 @@ export class ToDoComponent implements OnInit {
   }
 
   onDeleteConfirm(item:ToDo){
-    console.log(item);
+    debugger;
+    for(var  i= 0;i<  this.todos.length; i++){
+      if(this.todos[i].Id == item.Id){
+        this.todos.splice(i, 1);
+      }
+    }
+       console.log(item);
   }
 
   onSalvar(item:ToDo){
     console.log(item);
+    let max  = 0;
+    this.todos.forEach(element => {
+      max = (element.Id> max)?element.Id:max ;
+    });
+    item.Id = max+1;
+    item.Status= 'Novo';
     this.todos.push(item);
-    this.novoTodo = {};
+    this.novoTodo.Nome = '';
   }
-
-
 }

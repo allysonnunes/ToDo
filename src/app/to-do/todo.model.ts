@@ -1,5 +1,5 @@
 export interface ToDo{
-  Id?: number;
+  Id: number;
   Nome?:string;
   Status?:string;
 }
